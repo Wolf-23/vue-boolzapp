@@ -163,6 +163,12 @@ const app = new Vue({
                     }
                 ],
             }
-        ]
-    }
+        ],
+        selectedUser: 0,
+    },
+    methods: {
+        selectedChat(index) {
+            this.selectedUser = index;
+        }
+    },
 })

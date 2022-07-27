@@ -12,8 +12,8 @@
     <body>
         <div id="app">
             <div class="container-md myContainer">
-                <div class="row">
-                    <div class="col-4">
+                <div class="row h-100">
+                    <div class="col-4 bg-white">
                         <div class="row myProfile">
                             <div class="col-9 p-1">
                                 <img class="img-fluid rounded-circle myImg ms-1" src="img/avatar_io.jpg" alt="La tua immagine del profilo">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="row myContacts">
                             <div class="col-12 bg-white">
-                                <div class="row"  v-for="(user, x) in contacts">
+                                <div class="row"  v-for="(user, x) in contacts" @click="selectedChat(x)">
                                     <div class="col-4 col-md-3">
                                         <img class="img-fluid rounded-circle p-xl-2 p-lg-1" :src="'img/avatar' + user.avatar + '.jpg'">
                                     </div>
@@ -72,22 +72,36 @@
                         </div>
                     </div>
                     <div class="col-8 myActiveContacts">
-                        <div class="row">
-                            <div class="col-10">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <img class="img-fluid rounded-circle p-2 myActiveContactsPhoto" src="img/avatar_1.jpg">
-                                    </div>
-                                    <div class="col-9 pt-1">
-                                        <span class="d-block"></span>
-                                        <span class="d-block myLastMessage">Ultimo messaggio inviato</span>
-                                    </div>
-                                </div> 
+                        <div class="row justify-content-between">
+                            <div class="col-9 col-lg-8 col-xl-6 d-flex">
+                                <img class="img-fluid rounded-circle p-2 myImg" :src="'img/avatar' + contacts[selectedUser].avatar + '.jpg'">
+                                <div class="pt-1">
+                                    <span>{{contacts[selectedUser].name}}</span>
+                                    <span class="d-block myLastMessage">Ultimo accesso oggi alle 12:00</span>
+                                </div>
                             </div>
-                            <div class="col-2 d-flex">
+                            <div class="col-3 col-lg-2 d-flex align-items-center">
                                 <i class="fa-solid fa-magnifying-glass text-secondary px-2"></i>
                                 <i class="fa-solid fa-paperclip text-secondary px-2"></i>
                                 <i class="fa-solid fa-ellipsis-vertical text-secondary px-2"></i>
+                            </div>
+                        </div>
+                        <div class="myChat">
+                            Test
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row align-items-center">
+                                    <div class="col-1">
+                                        <i class="fa-regular fa-face-smile"></i>
+                                    </div>
+                                    <div class="col-10">
+                                        <input type="text" placeholder="Scrivi un messaggio" class="w-100 rounded-1 border-0 px-3 py-1" >
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="fa-solid fa-microphone"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
