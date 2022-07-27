@@ -11,7 +11,7 @@
     </head>
     <body>
         <div id="app">
-            <div class="container myContainer">
+            <div class="container-md myContainer">
                 <div class="row">
                     <div class="col-4">
                         <div class="row myProfile">
@@ -57,14 +57,14 @@
                         <div class="row myContacts">
                             <div class="col-12 bg-white">
                                 <div class="row"  v-for="(user, x) in contacts">
-                                    <div class="col-md-3">
-                                        <img class="img-fluid rounded-circle p-2" :src="'img/avatar' + user.avatar + '.jpg'">
+                                    <div class="col-4 col-md-3">
+                                        <img class="img-fluid rounded-circle p-xl-2 p-lg-1" :src="'img/avatar' + user.avatar + '.jpg'">
                                     </div>
-                                    <div class="col-md-7 pt-1">
+                                    <div class="col-6 col-md-7 pt-1">
                                         <span class="d-block">{{user.name}}</span>
                                         <span class="d-block myLastMessage">Ultimo messaggio inviato</span>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-2 col-md-2">
                                         <span class="myTime">12:00</span>
                                     </div>
                                 </div>
