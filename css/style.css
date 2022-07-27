@@ -21,7 +21,18 @@ body {
 }
 
 .myProfile,
-.mySearch {
+.mySearch,
+.myActiveContacts {
     background-color: #EAEAEA;
+}
+
+.myContacts{
+    height: 70vh;
+}
+
+.myLastMessage,
+.myTime {
+    font-size: 10px;
+    color: rgb(176, 176, 176);
 }
 
