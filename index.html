@@ -15,9 +15,9 @@
                 <div class="row h-100">
                     <div class="col-4 bg-white">
                         <div class="row myProfile">
-                            <div class="col-9 p-1">
+                            <div class="col-6 col-lg-8 col-xl-6 p-1">
                                 <img class="img-fluid rounded-circle myImg ms-1" src="img/avatar_io.jpg" alt="La tua immagine del profilo">
-                                <span class="ms-1 align-middle fw-semibold">Sofia</span>
+                                <span class="ms-1 align-middle fw-semibold d-none d-md-inline">Sofia</span>
                             </div>
                             <div class="col-1 d-flex align-items-center text-secondary">
                                 <i class="fa-solid fa-circle-notch"></i>
@@ -29,17 +29,17 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </div>
                         </div>
-                        <div class="row bg-info">
+                        <div class="row bg-info d-none d-md-block">
                             <div class="col-12 p-2">
                                 <div class="row">
-                                    <div class="col-2 d-flex align-items-center ps-3">
+                                    <div class="col-3 d-flex align-items-center ps-3">
                                         <i class="fa-solid fa-bell-slash bg-white text-info p-3 rounded-circle"></i>
                                     </div>
-                                    <div class="col-10 ps-3">
-                                        <span class="d-block">
+                                    <div class="col-9 ps-3">
+                                        <span class="d-block fs-12">
                                             Ricevi notifiche di nuovi messaggi
                                         </span> 
-                                        <a href="#">Attiva notifiche desktop</a>
+                                        <a class="fs-12" href="#">Attiva notifiche desktop</a>
                                     </div>
                                 </div>
                             </div>
@@ -60,9 +60,9 @@
                                     <div class="col-4 col-md-3">
                                         <img class="img-fluid rounded-circle p-xl-2 p-lg-1" :src="'img/avatar' + user.avatar + '.jpg'">
                                     </div>
-                                    <div class="col-6 col-md-7 pt-1">
+                                    <div class="col-6 col-md-7 mt-3">
                                         <span class="d-block">{{user.name}}</span>
-                                        <span class="d-block myLastMessage">Ultimo messaggio inviato</span>
+                                        <span class="d-none myLastMessage d-md-block">Ultimo messaggio inviato</span>
                                     </div>
                                     <div class="col-2 col-md-2">
                                         <span class="myTime">12:00</span>
@@ -71,9 +71,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8 myActiveContacts">
+                    <div class="col-8 myActiveContacts d-flex flex-column justify-content-between">
                         <div class="row justify-content-between">
-                            <div class="col-9 col-lg-8 col-xl-6 d-flex">
+                            <div class="col-9 col-lg-8 col-xl-6 d-flex p-1">
                                 <img class="img-fluid rounded-circle p-2 myImg" :src="'img/avatar' + contacts[selectedUser].avatar + '.jpg'">
                                 <div class="pt-1">
                                     <span>{{contacts[selectedUser].name}}</span>
@@ -86,19 +86,30 @@
                                 <i class="fa-solid fa-ellipsis-vertical text-secondary px-2"></i>
                             </div>
                         </div>
-                        <div class="myChat">
-                            Test
+                        <div class="myChat flex-grow-1">
+                            <div v-for="message in contacts[selectedUser].messages">
+                                <div v-if="message.status == 'sent'">
+                                    <div class="col-5 offset-6 sent my-4 ps-3 pe-2 pt-2 rounded">{{message.message}}
+                                        <div class="text-end fs-10">12:55</div>
+                                    </div>
+                                </div>
+                                <div v-else-if="message.status == 'received'">
+                                    <div class="col-5 offset-1 received my-4 ps-3 pe-2 pt-2 rounded">{{message.message}}
+                                        <div class="text-end fs-10">12:55</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 myMessageBar p-1">
                                 <div class="row align-items-center">
-                                    <div class="col-1">
+                                    <div class="col-1 d-flex justify-content-center p-0">
                                         <i class="fa-regular fa-face-smile"></i>
                                     </div>
-                                    <div class="col-10">
-                                        <input type="text" placeholder="Scrivi un messaggio" class="w-100 rounded-1 border-0 px-3 py-1" >
+                                    <div class="col-10 p-0">
+                                        <input type="text" placeholder="Scrivi un messaggio" class="w-100 rounded-1 border-0 px-3 py-1 sendMessage" >
                                     </div>
-                                    <div class="col-1">
+                                    <div class="col-1 d-flex justify-content-center p-0">
                                         <i class="fa-solid fa-microphone"></i>
                                     </div>
                                 </div>
