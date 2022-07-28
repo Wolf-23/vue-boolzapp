@@ -4,6 +4,7 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 /* General */
 
 body {
@@ -13,8 +14,6 @@ body {
     background-repeat: no-repeat;
     overflow: hidden;
 }
-
-
 
 .h-100 {
     height: 100%;
@@ -85,6 +84,13 @@ body {
     overflow-y: scroll;
     cursor: pointer;
     height: calc(900px - 60px - 60px - 50px);
+}
+
+.myDropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
 }
 
 /* Messaggi */

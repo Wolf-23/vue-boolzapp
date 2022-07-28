@@ -195,6 +195,18 @@ const app = new Vue({
                 this.contacts[this.selectedUser].messages.push(reply);
               }, "1000");
         },
+        deleteMessage(i) {
+            this.contacts[this.selectedUser].messages.splice(i, 1)
+        },
+      
+    },
+    mounted() {
+        for (x = 0; x < this.contacts.length; x++) {
+            for (i = 0; i < this.contacts[x].messages.length; i++) {
+                let newDate = this.contacts[x].messages[i].date.slice(10,16);
+                this.contacts[x].messages[i].date = newDate;
+            }
+        }
     },
     computed: {
         searchUser() {

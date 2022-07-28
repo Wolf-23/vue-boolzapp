@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-6 col-md-7 mt-lg-3">
                                         <span class="d-block">{{user.name}}</span>
-                                        <span class="d-none myLastMessage d-md-block">Ultimo messaggio inviato</span>
+                                        <span class="d-none myLastMessage d-md-block">{{user.messages[x]}}</span>
                                     </div>
                                     <div class="col-2 col-md-2">
                                         <span class="myTime">12:00</span>
@@ -88,15 +88,27 @@
                         </div>
                         <!-- Messaggi -->
                         <div class="myChat">
-                            <div v-for="message in contacts[selectedUser].messages">
+                            <div v-for="(message, i) in contacts[selectedUser].messages">
                                 <div v-if="message.status == 'sent'">
-                                    <div class="col-5 offset-6 sent my-4 ps-3 pe-2 pt-2 rounded">{{message.message}}
-                                        <div class="text-end fs-10">12:55</div>
+                                    <div class="col-5 offset-6 sent my-4 ps-3 pe-3 pt-2 me-2 rounded position-relative">{{message.message}}
+                                        <div class="text-end fs-10">{{message.date}}</div>
+                                        <div class="dropdown myDropdown">
+                                            <button class="btn dropdown-toggle border-0 p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                            <ul class="dropdown-menu p-0 bg-danger">
+                                              <li><a class="dropdown-item p-1" @click="deleteMessage(i)" href="#">Delete Message</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <div v-else-if="message.status == 'received'">
-                                    <div class="col-5 offset-1 received my-4 ps-3 pe-2 pt-2 rounded">{{message.message}}
-                                        <div class="text-end fs-10">12:55</div>
+                                    <div class="col-5 offset-1 received my-4 ps-3 pe-3 pt-2 me-2 rounded position-relative">{{message.message}}
+                                        <div class="text-end fs-10">{{message.date}}</div>
+                                        <div class="dropdown-right myDropdown">
+                                            <button class="btn dropdown-toggle border-0 p-1" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                            <ul class="dropdown-menu p-0 bg-danger">
+                                              <li><a class="dropdown-item p-1" @click="deleteMessage(i)" href="#">Delete Message</a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
