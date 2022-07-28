@@ -174,8 +174,10 @@ const app = new Vue({
         },
         sendMessage() {
             this.inputText = this.inputText.trim();
+            let DateDayJs = dayjs().format('HH:mm');
             if (!this.inputText == '') {
                 let newMessage = {
+                    date: DateDayJs,
                     message: this.inputText,
                     status: 'sent'
                 }
@@ -186,9 +188,11 @@ const app = new Vue({
         },
         replyMessage() {
             setTimeout(() => {
-                let random = Math.floor(Math.random() * 4);
-                let risposte = ['Va bene', 'Studia VueJs!', 'Ok', 'Ci sarò']
+                let DateDayJs = dayjs().format('HH:mm');
+                let random = Math.floor(Math.random() * 6);
+                let risposte = ['Va bene', 'Studia VueJs!', 'Ok', 'Ci sarò', 'Ci penserò', 'Studia Javascript!']
                 let reply = {
+                    date: DateDayJs,
                     message: risposte[random],
                     status: 'received'
                 }
