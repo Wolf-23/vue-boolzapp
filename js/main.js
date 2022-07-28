@@ -165,10 +165,22 @@ const app = new Vue({
             }
         ],
         selectedUser: 0,
+        inputText: '',
     },
     methods: {
         selectedChat(index) {
             this.selectedUser = index;
+        },
+        sendMessage() {
+            this.inputText.trim();
+            if (!this.inputText == '') {
+                let newMessage = {
+                    message: this.inputText,
+                    status: 'sent'
+                }
+                this.contacts[this.selectedUser].messages.push(newMessage);
+                this.inputText = '';
+            }
         }
     },
 })
