@@ -1,8 +1,10 @@
+/* Reset */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+/* General */
 
 body {
     background: rgb(218,219,212);
@@ -12,10 +14,7 @@ body {
     overflow: hidden;
 }
 
-.myContainer {
-    margin-top: 40px;
-    height: 900px;
-}
+
 
 .h-100 {
     height: 100%;
@@ -31,7 +30,14 @@ body {
 
 .fs-10 {
     font-size: 10px;
-   }
+}
+
+/* My Css */
+
+.myContainer {
+    margin-top: calc((100vh - 900px) / 2);
+    height: 900px;
+}
 
 .myImg {
     width: 50px;
@@ -66,17 +72,21 @@ body {
     margin-right: calc(-.5 * var(--bs-gutter-x));
     margin-left: calc(-.5 * var(--bs-gutter-x));
     background-size: contain;
+    overflow-y: scroll;
+    height: calc(900px - 40px - 60px);
 }
 
 .myMessageBar {
     background-color: #F3EEEA;
+    height: 40px;
 }
 
 .myContacts {
     overflow-y: scroll;
     cursor: pointer;
-    height: calc(900px - 170px);
+    height: calc(900px - 60px - 60px - 50px);
 }
+
 /* Messaggi */
 
 .sent {

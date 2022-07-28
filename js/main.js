@@ -166,13 +166,14 @@ const app = new Vue({
         ],
         selectedUser: 0,
         inputText: '',
+        ricerca: '',
     },
     methods: {
         selectedChat(index) {
             this.selectedUser = index;
         },
         sendMessage() {
-            this.inputText.trim();
+            this.inputText = this.inputText.trim();
             if (!this.inputText == '') {
                 let newMessage = {
                     message: this.inputText,
@@ -180,7 +181,31 @@ const app = new Vue({
                 }
                 this.contacts[this.selectedUser].messages.push(newMessage);
                 this.inputText = '';
+                this.replyMessage();
+            }
+        },
+        replyMessage() {
+            setTimeout(() => {
+                let random = Math.floor(Math.random() * 4);
+                let risposte = ['Va bene', 'Studia VueJs!', 'Ok', 'Ci sarò']
+                let reply = {
+                    message: risposte[random],
+                    status: 'received'
+                }
+                this.contacts[this.selectedUser].messages.push(reply);
+              }, "1000");
+        },
+    },
+    computed: {
+        searchUser() {
+            this.ricerca = this.ricerca.charAt(0).toUpperCase() + this.ricerca.slice(1);
+            for (x = 0; x < this.contacts.length; x++) {
+                if(!this.contacts[x].name.includes(this.ricerca)) {
+                    this.contacts[x].visible = false;
+                } else {
+                    this.contacts[x].visible = true;
+                }
             }
         }
-    },
+    }
 })

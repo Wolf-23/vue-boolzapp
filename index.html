@@ -48,19 +48,14 @@
                         </div>
                         <!-- MySearch -->
                         <div class="row">
-                            <div class="col-12 mySearch p-1">
-                                <div class="input-group">
-                                    <button class="btn btn-light rounded-0 " type="button" id="button-addon1">
-                                        <i class="fa-solid fa-magnifying-glass text-secondary mx-3"></i>
-                                    </button>
-                                    <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat">
-                                  </div>
+                            <div class="col-12 mySearch p-2" searchUser>
+                                <input type="text" class="rounded-1 border-0 px-3 py-1 w-100 myInputSearch" placeholder="Cerca o inizia una nuova chat" v-model="ricerca">
                             </div>
                         </div>
                         <!-- MyContacts -->
                         <div class="row myContacts">
                             <div class="col-12 bg-white">
-                                <div class="row mb-md-1 mt-md-1 mb-sm-3 mt-sm-3"  v-for="(user, x) in contacts" @click="selectedChat(x)">
+                                <div class="row mb-md-1 mt-md-1 mb-sm-3 mt-sm-3"  v-for="(user, x) in contacts" @click="selectedChat(x)" v-if="contacts[x].visible == true">
                                     <div class="col-4 col-md-3">
                                         <img class="img-fluid rounded-circle p-xl-2 p-lg-1" :src="'img/avatar' + user.avatar + '.jpg'" :alt="user.name">
                                     </div>
@@ -92,7 +87,7 @@
                             </div>
                         </div>
                         <!-- Messaggi -->
-                        <div class="myChat flex-grow-1">
+                        <div class="myChat">
                             <div v-for="message in contacts[selectedUser].messages">
                                 <div v-if="message.status == 'sent'">
                                     <div class="col-5 offset-6 sent my-4 ps-3 pe-2 pt-2 rounded">{{message.message}}
