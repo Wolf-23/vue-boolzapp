@@ -214,9 +214,9 @@ const app = new Vue({
     },
     computed: {
         searchUser() {
-            this.ricerca = this.ricerca.charAt(0).toUpperCase() + this.ricerca.slice(1);
+            this.ricerca = this.ricerca.toLowerCase();
             for (x = 0; x < this.contacts.length; x++) {
-                if(!this.contacts[x].name.includes(this.ricerca)) {
+                if(!this.contacts[x].name.toLowerCase().includes(this.ricerca)) {
                     this.contacts[x].visible = false;
                 } else {
                     this.contacts[x].visible = true;
