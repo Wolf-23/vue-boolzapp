@@ -207,7 +207,8 @@ const app = new Vue({
     mounted() {
         for (x = 0; x < this.contacts.length; x++) {
             for (i = 0; i < this.contacts[x].messages.length; i++) {
-                let newDate = this.contacts[x].messages[i].date.slice(10,16);
+                let newDate = this.contacts[x].messages[i].date.split(" ");
+                newDate = newDate[1].slice(0, 5);
                 this.contacts[x].messages[i].date = newDate;
             }
         }
