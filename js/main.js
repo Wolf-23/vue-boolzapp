@@ -119,7 +119,7 @@ const app = new Vue({
                     },
                     {
                         date: '10/01/2020 15:51:00',
-                        message: 'Nessuna nuova buona nuova',
+                        message: 'Nessuna buona notizia?',
                         status: 'sent'
                     }
                 ],
@@ -167,10 +167,13 @@ const app = new Vue({
         selectedUser: 0,
         inputText: '',
         ricerca: '',
+        lastAccessDate: '',
+        lastMessagetext: '',
     },
     methods: {
         selectedChat(index) {
             this.selectedUser = index;
+            this.lastAccess();
         },
         sendMessage() {
             this.inputText = this.inputText.trim();
@@ -197,23 +200,22 @@ const app = new Vue({
                     status: 'received'
                 }
                 this.contacts[this.selectedUser].messages.push(reply);
-              }, "1000");
+                this.lastAccess();
+            }, "1000");
         },
         deleteMessage(i) {
             this.contacts[this.selectedUser].messages.splice(i, 1)
         },
-      
-    },
-    mounted() {
-        for (x = 0; x < this.contacts.length; x++) {
-            for (i = 0; i < this.contacts[x].messages.length; i++) {
-                let newDate = this.contacts[x].messages[i].date.split(" ");
-                newDate = newDate[1].slice(0, 5);
-                this.contacts[x].messages[i].date = newDate;
-            }
-        }
-    },
-    computed: {
+        lastAccess() {
+            for (i = 0; i < this.contacts[this.selectedUser].messages.length; i++) {
+                if (this.contacts[this.selectedUser].messages[i].status == 'received') {
+                    if (this.contacts[this.selectedUser].messages.length == 0) {
+                        this.lastAccessDate = dayjs().format('HH:mm');
+                    }
+                    this.lastAccessDate = this.contacts[this.selectedUser].messages[i].date;
+                }
+            };
+        },
         searchUser() {
             this.ricerca = this.ricerca.toLowerCase();
             for (x = 0; x < this.contacts.length; x++) {
@@ -223,6 +225,17 @@ const app = new Vue({
                     this.contacts[x].visible = true;
                 }
             }
+        },
+    },
+    mounted() {
+        for (x = 0; x < this.contacts.length; x++) {
+            for (i = 0; i < this.contacts[x].messages.length; i++) {
+                let newDate = this.contacts[x].messages[i].date.split(" ");
+                newDate = newDate[1].slice(0, 5);
+                this.contacts[x].messages[i].date = newDate;
+            }
         }
-    }
+        this.lastAccess();
+        this.lastMessage();
+    },
 })

@@ -51,14 +51,14 @@
                         </div>
                         <!-- MySearch -->
                         <div class="row ">
-                            <div class="col-12 mySearch p-2" searchUser>
+                            <div class="col-12 mySearch p-2" @keyup="searchUser">
                                 <input type="text" class="rounded-1 border-0 px-3 py-1 w-100" placeholder="Cerca o inizia una nuova chat" v-model="ricerca" >
                             </div>
                         </div>
                         <!-- MyContacts -->
                         <div class="row myContacts">
                             <div class="col-12 bg-white">
-                                <div class="row mb-md-1 mt-md-1 mb-sm-3 mt-sm-3"  v-for="(user, x) in contacts" @click="selectedChat(x)" v-if="contacts[x].visible == true">
+                                <div class="row mb-md-1 mt-md-1 mb-sm-3 mt-sm-3"  v-for="(user, x) in contacts" @click="selectedChat(x)" v-if="contacts[x].visible == true" >
                                     <div class="col-4 col-md-3">
                                         <img class="img-fluid rounded-circle p-xl-2 p-lg-1" :src="'img/avatar' + user.avatar + '.jpg'" :alt="user.name">
                                     </div>
@@ -81,7 +81,7 @@
                                 <div class="pt-1">
                                     <span class="d-block">{{contacts[selectedUser].name}}</span>
                                     <span class="myLastMessage">Ultimo accesso oggi alle</span>
-                                    <span class="myLastMessage">{{contacts[selectedUser].messages[contacts[selectedUser].messages.length - 1].date}}</span>
+                                    <span class="myLastMessage">{{lastAccessDate}}</span>
                                 </div>
                             </div>
                             <div class="col-3 col-lg-2 d-flex align-items-center">
