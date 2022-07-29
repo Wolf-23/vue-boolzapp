@@ -64,10 +64,11 @@
                                     </div>
                                     <div class="col-6 col-md-7 mt-lg-2">
                                         <span class="d-block">{{user.name}}</span>
-                                        <span class="d-none myLastMessage d-md-block">{{user.messages[user.messages.length - 1].message}}</span>
+                                        <span class="d-none myLastMessage d-md-block" v-if="user.messages.length > 0">{{user.messages[user.messages.length - 1].message}}</span>
+                                        <span class="d-none myLastMessage d-md-block" v-else>Non ci sono messaggi!</span>
                                     </div>
                                     <div class="col-2 col-md-2">
-                                        <span class="myTime">{{user.messages[user.messages.length - 1].date}}</span>
+                                        <span class="myTime" v-if="user.messages.length > 0">{{user.messages[user.messages.length - 1].date}}</span>
                                     </div>
                                 </div>
                             </div>

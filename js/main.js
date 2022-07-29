@@ -168,7 +168,6 @@ const app = new Vue({
         inputText: '',
         ricerca: '',
         lastAccessDate: '',
-        lastMessagetext: '',
     },
     methods: {
         selectedChat(index) {
@@ -205,15 +204,17 @@ const app = new Vue({
         },
         deleteMessage(i) {
             this.contacts[this.selectedUser].messages.splice(i, 1)
+            this.lastAccess();
         },
         lastAccess() {
             for (i = 0; i < this.contacts[this.selectedUser].messages.length; i++) {
                 if (this.contacts[this.selectedUser].messages[i].status == 'received') {
-                    if (this.contacts[this.selectedUser].messages.length == 0) {
-                        this.lastAccessDate = dayjs().format('HH:mm');
-                    }
-                    this.lastAccessDate = this.contacts[this.selectedUser].messages[i].date;
+                   this.lastAccessDate = this.contacts[this.selectedUser].messages[i].date;
+                } else {
+                    let accessDate = dayjs().format('HH:mm');
+                    this.lastAccessDate = accessDate;
                 }
+                
             };
         },
         searchUser() {
@@ -236,6 +237,5 @@ const app = new Vue({
             }
         }
         this.lastAccess();
-        this.lastMessage();
     },
 })
